@@ -4,6 +4,7 @@ import authfile from './routes/authRoute.js'
 import middleWare from './middleWares/appMiddlewae.js'
 import cors from 'cors'
 import corsConfig from '../config/configCors.js'
+import {globleErrorHandler} from '../src/middleWares/errorHandler.js'
 
 dotenv.config()
 
@@ -11,6 +12,7 @@ const app = express()
 //app.use(cors())  <Allowed every request from any origin(Url)>
 app.use(corsConfig()) //allowed limited origin with custom changes to make resquest to the server
 app.use(express.json())
+app.use(globleErrorHandler)
 app.use(express.urlencoded({extended:true}))
 const PORT=process.env.PORT
 
